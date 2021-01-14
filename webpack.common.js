@@ -1,10 +1,15 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
+const { CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
   entry: "./src/main.js",
+  mode: "production",
   output: {
     filename: "[name].js",
     path: path.join(__dirname, "output")
+  },
+  devServer: {
+    contentBase: '/public'
   },
   module: {
     rules: [
@@ -16,12 +21,12 @@ module.exports = {
           presets: ["@babel/preset-env"]
         }
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader",
-        enforce: 'pre'
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: "eslint-loader",
+      //   enforce: "pre"
+      // },
       {
         test: /\.less$/,
         use: ["style-loader", "css-loader", "less-loader"]
@@ -41,12 +46,12 @@ module.exports = {
     ]
   },
 
-  plugins: [new VueLoaderPlugin()]
+  plugins: [
+    new VueLoaderPlugin(),
+    new CleanWebpackPlugin()
+  ]
 };
-
-
 
 // TODO: dev server
 // sourceMap
-// eslint
 // 开发和生产模式区别
