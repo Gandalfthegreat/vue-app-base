@@ -10,10 +10,17 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-env"]
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        enforce: 'pre'
       },
       {
         test: /\.less$/,
@@ -36,3 +43,10 @@ module.exports = {
 
   plugins: [new VueLoaderPlugin()]
 };
+
+
+
+// TODO: dev server
+// sourceMap
+// eslint
+// 开发和生产模式区别

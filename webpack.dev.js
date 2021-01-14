@@ -1,5 +1,5 @@
 const common = require("./webpack.common.js");
-// const { Function } = require("webpack-merge");
+// const { webpack } = require("webpack-merge");
 module.exports = Object.assign(common, {
   mode: "development"
 });
